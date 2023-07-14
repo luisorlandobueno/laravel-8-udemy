@@ -1,5 +1,13 @@
 <?php
 
+
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\UserController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +23,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/nombre/{name}', 'UserController@showName');
-Route::get('/inicio', 'UserController@index');
-Route::get('/suma/{num?}', 'UserController@suma');
 
-Route::namespace('Admin')->group(function (){
-    Route::get('/admin', 'AdministratorController@index');
-    Route::get('/dashboard', 'dashboardController@index');
-    Route::get('/invoice', 'InvoiceController@index');
-});
-
-Route::resource('/cliente', 'CustomerController')->names([
-    'index' => 'customer.start'
-]);
+Route::get('/nombre/{name}' ,[UserController::class , 'showName']);
