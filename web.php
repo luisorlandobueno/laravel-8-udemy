@@ -1,30 +1,27 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AdministratorController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InvoiceController;
+use PHPUnit\TextUI\XmlConfiguration\Group;
+
+
+
+Route::get('/inicio', [UserController::class, 'index'])->middleware('checkage');
+
+Route::get('/nombre/{name}', [UserController::class, 'showname']);
+
+Route::get('/suma/{num?}', [UserController::class, 'suma']);
+
+
+Route::namespace('Admin')->group(function(){
+    
+    Route::get('/admin', [AdministratorController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/invoice', [InvoiceController::class, 'index']);
+
 });
-
-Route::get('/nombre/{name}', 'UserController@showName');
-Route::get('/inicio', 'UserController@index');
-Route::get('/suma/{num?}', 'UserController@suma');
-
-Route::namespace('Admin')->group(function (){
-    Route::get('/admin', 'AdministratorController@index');
-    Route::get('/dashboard', 'dashboardController@index');
-    Route::get('/invoice', 'InvoiceController@index');
-});
-
-Route::resource('/cliente', 'CustomerController')->names([
-    'index' => 'customer.start'
-]);
