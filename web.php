@@ -11,14 +11,14 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 
 
 
-Route::get('/inicio', [UserController::class, 'index'])->middleware('checkage');
+Route::get('/inicio', [UserController::class, 'index'])->middleware('checkage:80');
 
 Route::get('/nombre/{name}', [UserController::class, 'showname']);
 
 Route::get('/suma/{num?}', [UserController::class, 'suma']);
 
 
-Route::namespace('Admin')->group(function(){
+Route::namespace('Admin')->middleware('grupodemiddleware')->group(function(){
     
     Route::get('/admin', [AdministratorController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
