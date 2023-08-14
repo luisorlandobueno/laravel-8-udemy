@@ -39,6 +39,15 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+
+        'grupodemiddleware' =>[
+
+             'checkage' => \App\Http\Middleware\CheckAge::class,
+             'm1' => \App\Http\Middleware\CheckAge1::class,
+             'm2' => \App\Http\Middleware\CheckAge2::class,
+
+        ],
+
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
