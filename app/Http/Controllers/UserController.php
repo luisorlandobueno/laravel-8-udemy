@@ -11,6 +11,17 @@ class  UserController extends Controller{
 
 
 
+   public function __construct(){
+
+
+       // $this->middleware('checkage');
+        $this->middleware('checkage')->only('index' , 'showname');
+        $this->middleware('checkage')->except('suma');
+
+
+   }
+
+
     public function index(){
 
         return view('welcome');
