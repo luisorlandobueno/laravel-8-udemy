@@ -11,8 +11,8 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 
 
 
-Route::view('/', 'welcome', ['name' => 'Gustavo']);
-Route::view('/', 'child');
+Route::view('/', 'welcome', ['mensaje' => 'este es un mensaje ramdom']);
+//Route::view('/', 'child');
 
 
 Route::get('/inicio', [UserController::class, 'index']);
